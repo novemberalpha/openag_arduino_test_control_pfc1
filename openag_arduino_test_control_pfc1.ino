@@ -45,39 +45,32 @@ void loop()
   {
     char ch = Serial.read();
     Serial.println(ch);
-
     switch(ch) {
-    case 0:
+    case '0':
       digitalWrite(heatPin, LOW);
       Serial.println("Heater ON!");
       break;
-    case 1:
-      _serial_port = &Serial2;
+    case '1':
       digitalWrite(h2oCirculationPin, LOW);
       Serial.println("Circulation Pump ON!");
       break;
-    case 2:
-      _serial_port = &Serial3;
+    case '2':
       digitalWrite(lightsPin, LOW);
       Serial.println("Grow Lights ON!");
       break;
-    case 3:
-      _serial_port = &Serial3;
+    case '3':
       digitalWrite(humidityPin, LOW);
       Serial.println("Humidifier ON!");
       break;
-    case 4:
-      _serial_port = &Serial3;
+    case '4':
       digitalWrite(ventFanPin, LOW);
       Serial.println("Vent Fan ON!");
       break;
-    case 5:
-      _serial_port = &Serial3;
+    case '5':
       digitalWrite(circFanPin, LOW);
       Serial.println("Circulation Fan ON!");
       break;
-    case x:
-      _serial_port = &Serial3;
+    case 'x':
       digitalWrite(heatPin, HIGH);
       digitalWrite(h2oCirculationPin, HIGH);
       digitalWrite(lightsPin, HIGH);
@@ -86,6 +79,10 @@ void loop()
       digitalWrite(circFanPin, HIGH);
       Serial.println("EVERYTHING OFF!");
       break;
+    default:
+      Serial.println("Not a valid key. Choose from 0,1,2,3,4,5,x");
+      break;
     }
+    delay(1);
   }
 }
